@@ -13,7 +13,7 @@ data = pd.DataFrame({
 
 st.markdown("<h2 style='text-align: center;'>🗺️ Map of Gurgaon</h2>", unsafe_allow_html=True)
 st.map(data)
-st.sidebar.success("Select a demo above.")
+st.sidebar.success("Select a page here.")
 
 
 
