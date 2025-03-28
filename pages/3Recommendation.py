@@ -49,7 +49,7 @@ if st.button('Search'):
     result_ser = location_df[location_df[selected_location] < radius*1000][selected_location].sort_values()
 
     for key, value in result_ser.items():
-        st.text(str(key) + " " + str(round(value/1000)) + ' kms')
+        st.text(str(key) + "  --> " + str(round(value/1000)) + ' kms')
 st.markdown("---")
 
 
