@@ -15,6 +15,18 @@ group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','l
 
 
 
+fig = px.scatter_map(
+    group_df,
+    lat="latitude",
+    lon="longitude",
+    map_style="open-street-map",
+    zoom=10,
+    hover_name="sector"  # or any valid column
+)
+
+st.plotly_chart(fig)
+
+
 st.header('Sector Price per Sqft Geomap')
 st.subheader("📍 DEBUG: Data Check Before Plotting Map")
 st.write("Shape:", group_df.shape)
