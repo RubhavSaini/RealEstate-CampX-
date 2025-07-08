@@ -18,9 +18,6 @@ group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','l
 
 st.header('Sector Price per Sqft Geomap')
 
-st.write("🧪 Map Data Check")
-st.write(group_df[['latitude', 'longitude', 'price_per_sqft', 'built_up_area']].head())
-
 # Make sure hover_name works
 group_df["sector"] = group_df.index.astype(str)
 
