@@ -18,10 +18,9 @@ group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','l
 
 st.header('Sector Price per Sqft Geomap')
 
-# Make sure hover_name works
+
 group_df["sector"] = group_df.index.astype(str)
 
-# Correct plotting function
 fig = px.scatter_mapbox(
     group_df,
     lat="latitude",
@@ -30,7 +29,7 @@ fig = px.scatter_mapbox(
     size='built_up_area',
     color_continuous_scale=px.colors.cyclical.IceFire,
     zoom=10,
-    mapbox_style="open-street-map",  # requires no token
+    mapbox_style="open-street-map",  
     width=1200,
     height=700,
     hover_name="sector"
