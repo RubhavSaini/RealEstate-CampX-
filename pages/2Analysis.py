@@ -15,6 +15,14 @@ group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','l
 
 
 
+st.write(group_df[['price_per_sqft', 'built_up_area']].dtypes)
+
+group_df['price_per_sqft'] = pd.to_numeric(group_df['price_per_sqft'], errors='coerce')
+group_df['built_up_area'] = pd.to_numeric(group_df['built_up_area'], errors='coerce')
+
+# Drop NaNs if any after conversion
+group_df.dropna(subset=['price_per_sqft', 'built_up_area'], inplace=True)
+
 fig = px.scatter_map(
     group_df,
     lat="latitude",
