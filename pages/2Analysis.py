@@ -20,7 +20,7 @@ st.header('Sector Price per Sqft Geomap')
 
 fig = px.scatter_mapbox(group_df, lat="latitude", lon="longitude", color="price_per_sqft", size='built_up_area',
                   color_continuous_scale=px.colors.cyclical.IceFire, zoom=7,
-                  map_style="open-street-map",width=1200,height=700,hover_name=group_df.index)
+                  width=1200,height=700,hover_name=group_df.index)
 
 st.plotly_chart(fig,use_container_width=True)
 st.markdown("---")
