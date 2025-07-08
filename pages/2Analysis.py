@@ -15,24 +15,22 @@ group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','l
 
 
 
-st.write(group_df[['price_per_sqft', 'built_up_area']].dtypes)
-
-group_df['price_per_sqft'] = pd.to_numeric(group_df['price_per_sqft'], errors='coerce')
-group_df['built_up_area'] = pd.to_numeric(group_df['built_up_area'], errors='coerce')
-
-# Drop NaNs if any after conversion
-group_df.dropna(subset=['price_per_sqft', 'built_up_area'], inplace=True)
+group_df["sector"] = group_df.index.astype(str)
 
 fig = px.scatter_map(
     group_df,
     lat="latitude",
     lon="longitude",
+    color="price_per_sqft",
+    size="built_up_area",
+    color_continuous_scale=px.colors.cyclical.IceFire,
     map_style="open-street-map",
     zoom=10,
-    hover_name="sector"  # or any valid column
+    height=600,
+    hover_name="sector"  # Now it exists
 )
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
 
 
 # st.header('Sector Price per Sqft Geomap')
