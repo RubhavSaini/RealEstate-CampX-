@@ -17,11 +17,36 @@ group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','l
 
 
 st.header('Sector Price per Sqft Geomap')
-fig = px.scatter_map(group_df, lat="latitude", lon="longitude", color="price_per_sqft", size='built_up_area',
-                  color_continuous_scale=px.colors.cyclical.IceFire, zoom=10,
-                  map_style="open-street-map",width=1200,height=700,hover_name=group_df.index)
 
-st.plotly_chart(fig,use_container_width=True)
+st.write("🧪 Map Data Check")
+st.write(group_df[['latitude', 'longitude', 'price_per_sqft', 'built_up_area']].head())
+
+# Make sure hover_name works
+group_df["sector"] = group_df.index.astype(str)
+
+# Correct plotting function
+fig = px.scatter_mapbox(
+    group_df,
+    lat="latitude",
+    lon="longitude",
+    color="price_per_sqft",
+    size='built_up_area',
+    color_continuous_scale=px.colors.cyclical.IceFire,
+    zoom=10,
+    mapbox_style="open-street-map",  # requires no token
+    width=1200,
+    height=700,
+    hover_name="sector"
+)
+
+st.plotly_chart(fig, use_container_width=True)
+
+
+# fig = px.scatter_map(group_df, lat="latitude", lon="longitude", color="price_per_sqft", size='built_up_area',
+#                   color_continuous_scale=px.colors.cyclical.IceFire, zoom=10,
+#                   map_style="open-street-map",width=1200,height=700,hover_name=group_df.index)
+
+# st.plotly_chart(fig,use_container_width=True)
 
 st.markdown("---")
 
