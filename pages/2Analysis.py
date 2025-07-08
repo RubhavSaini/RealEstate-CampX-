@@ -17,13 +17,9 @@ group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','l
 
 
 st.header('Sector Price per Sqft Geomap')
-st.subheader("📍 DEBUG: Data Check Before Plotting Map")
-st.write("Shape:", group_df.shape)
-st.write(group_df.columns.tolist())
-st.write(group_df[['latitude', 'longitude']].isnull().sum())
-st.write(group_df[['latitude', 'longitude']].head())
-fig = px.scatter_map(group_df, lat="latitude", lon="longitude", color="price_per_sqft", size='built_up_area',
-                  color_continuous_scale=px.colors.cyclical.IceFire, zoom=10,
+
+fig = px.scatter_mapbox(group_df, lat="latitude", lon="longitude", color="price_per_sqft", size='built_up_area',
+                  color_continuous_scale=px.colors.cyclical.IceFire, zoom=7,
                   map_style="open-street-map",width=1200,height=700,hover_name=group_df.index)
 
 st.plotly_chart(fig,use_container_width=True)
